@@ -7,12 +7,39 @@
 //
 
 #import "AppDelegate.h"
-
-@implementation AppDelegate
+#import "Request.h"
+#import "ListenToNewMessageOperation.h"
+#import "FilePath.h"
+@implementation AppDelegate{
+    
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    
+    NSLog(@"启动！");
+    
+    self.window=[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    UIStoryboard* MainStoryBoard=[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+    
+    NSFileManager* FileManager=[NSFileManager defaultManager];
+    UIViewController* StartVC=nil;
+    if ([FileManager fileExistsAtPath:[FilePath getUserProfilePath]]) {
+        
+        NSDictionary* UserProfile=[NSDictionary dictionaryWithContentsOfFile:[FilePath getUserProfilePath]];
+        [[NSUserDefaults standardUserDefaults] setValue:[UserProfile objectForKey:@"u_name"] forKey:@"u_name"];
+        [[NSUserDefaults standardUserDefaults] setValue:[UserProfile objectForKey:@"u_pwd"] forKey:@"u_pwd"];
+        StartVC=[MainStoryBoard instantiateViewControllerWithIdentifier:@"MainVC"];
+        
+    }else{
+        StartVC=[MainStoryBoard instantiateInitialViewController];
+    }
+    
+    self.window.rootViewController=StartVC;
+    
+    NSLog(@"启动完成");
+    [self.window makeKeyAndVisible];
+
     return YES;
 }
 							
@@ -40,6 +67,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
