@@ -36,20 +36,7 @@ static MyUserInfo* MUIF=nil;
     }
     
 }
--(void)TransfromPropertysToDictionary{
-    NSMutableDictionary* dict=[[NSMutableDictionary alloc] init];
-    [dict setValue:self.u_name forKey:@"u_name"];
-    [dict setValue:self.u_tel forKey:@"u_tel"];
-    [dict setValue:self.gender forKey:@"gender"];
-    [dict setValue:self.preference forKey:@"preference"];
-    [dict setValue:self.motto forKey:@"motto"];
-    [dict setValue:self.qq_number forKey:@"qq_number"];
-    [dict setValue:self.company forKey:@"company"];
-    [dict setValue:self.job_status forKey:@"job_status"];
-    self.ProfileDictionary=dict;
-    
-    
-}
+
 
 -(BOOL)backupToNative{
     
@@ -65,8 +52,10 @@ static MyUserInfo* MUIF=nil;
         BOOL UpdateResult=[self updateToService];
         dispatch_async(dispatch_get_main_queue(), ^{
            
-            if (BackupResult) {
+            if (BackupResult&&UpdateResult) {
                 [NotificatingUserMethods showMessageInStatusBar:@"信息已保存"];
+            }else{
+                [NotificatingUserMethods showMessageInStatusBar:@"信息保存失败"];
             }
         });
     });

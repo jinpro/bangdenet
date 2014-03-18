@@ -14,6 +14,7 @@
 #import "AnwserCell.h"
 #import "UIElements.h"
 #import "CustomActionSheet.h"
+#import "UserProfileViewController.h"
 @interface ResListViewController ()
 
 @end
@@ -140,7 +141,7 @@
     }
     
     if ([self.FunctionFlag isEqualToString:@"NewFriend"]) {
-        UIActionSheet* ActionSheet=[[CustomActionSheet alloc] initWithTitle:@"选项" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"查看详情",@"给TA留言",@"关闭",nil];
+        UIActionSheet* ActionSheet=[[CustomActionSheet alloc] initWithTitle:@"选项" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"查看详情",@"给TA留言",@"TA的信息",@"关闭",nil];
         ActionSheet.tintColor=[UIColor colorWithCGColor:[UIElements TintColor]];
         [ActionSheet showFromTabBar:self.tabBarController.tabBar];
         return ;
@@ -173,6 +174,16 @@
         
     }else if (buttonIndex==1){
         [self performSegueWithIdentifier:@"FromAnwserToMessage" sender:self];
+    }else if(buttonIndex==2){
+        
+        NSDictionary* dict=[ResArray objectAtIndex:CurrentIndex];
+        
+        UIStoryboard* StoryBoard=[UIStoryboard storyboardWithName:@"UserProfile" bundle:[NSBundle mainBundle]];
+        UserProfileViewController* UPVC=[StoryBoard instantiateInitialViewController];
+        UPVC.Editable=NO;
+        UPVC.UserName=[dict objectForKey:@"u_name"];
+        [self.navigationController pushViewController:UPVC animated:YES];
+    
     }else{
         [actionSheet dismissWithClickedButtonIndex:buttonIndex animated:YES];
         [self.tableview deselectRowAtIndexPath:[self.tableview indexPathForSelectedRow] animated:YES];

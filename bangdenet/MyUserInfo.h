@@ -10,7 +10,7 @@
 #import "DataModel.h"
 @interface MyUserInfo : UserInfo<DataModel>
 
-@property(strong,nonatomic)NSDictionary* ProfileDictionary;
+
 -(void)saveInBackground;
 -(NSDictionary*)requestDataWithBlocking;
 +(id)defaultMyUserInfo;

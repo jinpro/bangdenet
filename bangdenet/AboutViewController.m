@@ -173,6 +173,8 @@
         if (indexPath.row==0) {
             UIStoryboard* UPStoryboard=[UIStoryboard storyboardWithName:@"UserProfile" bundle:[NSBundle mainBundle]];
             UserProfileViewController* UPVC=[UPStoryboard instantiateInitialViewController];
+            UPVC.Editable=YES;
+            UPVC.UserName=[[NSUserDefaults standardUserDefaults] objectForKey:@"u_name"];
            
             [self.navigationController pushViewController:UPVC animated:YES];
             

@@ -13,7 +13,7 @@
 
 
 @property(assign,nonatomic) BOOL Editable;
-
+@property(copy,nonatomic) NSString* UserName;
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end

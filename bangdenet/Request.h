@@ -27,5 +27,6 @@
 +(NSString*)getInfo:(NSString*)property;
 
 -(NSMutableArray*)getList;
+-(NSDictionary*)dictionaryOfJSON;
 -(void)setArguments:(NSDictionary*)ArgumentsDictionary;
 @end

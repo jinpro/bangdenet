@@ -18,5 +18,8 @@
 @property(copy,nonatomic) NSString* qq_number;
 @property(copy,nonatomic) NSString* job_status;
 @property(copy,nonatomic) NSString* company;
-
+@property(copy,nonatomic) NSString* birthdate;
+@property(strong,nonatomic)NSDictionary* ProfileDictionary;
+-(void)TransfromPropertysToDictionary;
++(NSDictionary*)UserProfileOfUserWithNameInBlocking:(NSString*)UserName;
 @end

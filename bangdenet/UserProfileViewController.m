@@ -34,18 +34,36 @@
     [super viewDidLoad];
     //ui初始化
     self.navigationItem.title=@"个人信息";
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStyleBordered target:self action:@selector(updateProfile:)];
-    self.navigationItem.rightBarButtonItem.tintColor=[UIColor colorWithCGColor:[UIElements TintColor]];
+    if (self.Editable) {
+        self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStyleBordered target:self action:@selector(updateProfile:)];
+        self.navigationItem.rightBarButtonItem.tintColor=[UIColor colorWithCGColor:[UIElements TintColor]];
+    }
+    
     //数据初始化
     self.ShowTextMappingKey=@{@"用户名：":@"u_name",@"我的座右铭：":@"motto",@"话题偏好：":@"preference",@"性别：":@"gender",@"联系电话：":@"u_tel",@"qq号：":@"qq_number",@"公司/单位：":@"company",@"职业状态：":@"job_status",@"出生日期：":@"birthdate"};
-    MBProgressHUD* HUB=[[MBProgressHUD alloc]init];
-    HUB.dimBackground=YES;
-    HUB.labelText=@"请稍等";
-    [self.view addSubview:HUB];
-
+    
+    if ([self.UserName isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"u_name"]]) {
+        NSLog(@"自己的信息！\n");
         self.OldProfilesDictionary=[[MyUserInfo defaultMyUserInfo] requestDataWithBlocking];
-  
-    self.ProfilesDictionary=[NSMutableDictionary dictionaryWithDictionary:self.OldProfilesDictionary];
+        self.ProfilesDictionary=[NSMutableDictionary dictionaryWithDictionary:self.OldProfilesDictionary];
+    }else{
+        NSLog(@"%@的信息！\n",self.UserName);
+        MBProgressHUD* HUB=[[MBProgressHUD alloc] initWithView:self.view];
+        HUB.labelText=@"请稍等";
+        HUB.dimBackground=YES;
+        [self.view addSubview:HUB];
+        [HUB showAnimated:YES whileExecutingBlock:^{
+            NSLog(@"获得了信息\n");
+            self.OldProfilesDictionary=[UserInfo UserProfileOfUserWithNameInBlocking:self.UserName];
+        }completionBlock:^{
+            self.ProfilesDictionary=[NSMutableDictionary dictionaryWithDictionary:self.OldProfilesDictionary];
+            [self.tableview reloadData];
+            NSLog(@"qq号码：%@\n",[self.ProfilesDictionary objectForKey:@"qq"]);
+        }];
+    }
+    
+
+    
     
     
 }
@@ -88,7 +106,7 @@
     if (indexPath.section==0) {
        Cell=[tableView dequeueReusableCellWithIdentifier:@"UnEditableProfileCell"];
         Cell.textLabel.text=@"用户名：";
-        Cell.detailTextLabel.text=[[NSUserDefaults standardUserDefaults] objectForKey:@"u_name"];
+        Cell.detailTextLabel.text=self.UserName;
         [self.ProfilesDictionary setValue:Cell.detailTextLabel.text forKey:@"u_name"];
     }else if (indexPath.section==1) {
         Cell=[tableView dequeueReusableCellWithIdentifier:@"EditableProfileCell"];
@@ -107,6 +125,7 @@
         }
   
         Cell.detailTextLabel.text=[self.ProfilesDictionary objectForKey:[self.ShowTextMappingKey objectForKey:Cell.textLabel.text]];
+        NSLog(@"%@:%@",[self.ShowTextMappingKey objectForKey:Cell.textLabel.text],Cell.detailTextLabel.text);
     }else{
         Cell=[tableView dequeueReusableCellWithIdentifier:@"EditableProfileCell"];
        
@@ -134,7 +153,9 @@
             default:
                 break;
         }
+        NSLog(@"用户信息数据：%@\n",self.ProfilesDictionary);
         Cell.detailTextLabel.text=[self.ProfilesDictionary objectForKey:[self.ShowTextMappingKey objectForKey:Cell.textLabel.text]];
+        NSLog(@"%@:%@",[self.ShowTextMappingKey objectForKey:Cell.textLabel.text],Cell.detailTextLabel.text);
     }
     
     
@@ -143,29 +164,31 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    UIViewController* NextVC=[[GenderSelectViewController alloc] init];
-    UITableViewCell* CellItem=[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    NSString* CellItemText=CellItem.textLabel.text;
-    if ([CellItemText isEqualToString:@"性别："]) {
-        NextVC=[[GenderSelectViewController alloc] init];
-    }else if ([CellItemText isEqualToString:@"话题偏好："]){
-        NextVC=[[PreferenceViewController alloc] init];
-    }else if([CellItemText isEqualToString:@"用户名："]){
-        return ;
-    }else if([CellItemText isEqualToString:@"出生日期："]){
-        NextVC=[[DateEditTextViewController alloc] init];
-    }else{
+    if (self.Editable) {
+        UIViewController* NextVC=[[GenderSelectViewController alloc] init];
+        UITableViewCell* CellItem=[self tableView:tableView cellForRowAtIndexPath:indexPath];
+        NSString* CellItemText=CellItem.textLabel.text;
+        if ([CellItemText isEqualToString:@"性别："]) {
+            NextVC=[[GenderSelectViewController alloc] init];
+        }else if ([CellItemText isEqualToString:@"话题偏好："]){
+            NextVC=[[PreferenceViewController alloc] init];
+        }else if([CellItemText isEqualToString:@"用户名："]){
+            return ;
+        }else if([CellItemText isEqualToString:@"出生日期："]){
+            NextVC=[[DateEditTextViewController alloc] init];
+        }else{
+            
+            NextVC=[[EditTextViewController alloc]init];
+        }
+        [NextVC setValue:[self.ShowTextMappingKey objectForKey:CellItemText] forKey:@"EditingType"];
+        [NextVC setValue:CellItem.detailTextLabel.text forKey:@"TextString"];
+        self.EditingType=[self.ShowTextMappingKey objectForKey:CellItemText];
+        self.EditingIndexPath=indexPath;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateEditingInfo:) name:@"UpdateInfo" object:nil];
         
-        NextVC=[[EditTextViewController alloc]init];
+        [self.navigationController pushViewController:NextVC animated:YES];
     }
-    [NextVC setValue:[self.ShowTextMappingKey objectForKey:CellItemText] forKey:@"EditingType"];
-    [NextVC setValue:CellItem.detailTextLabel.text forKey:@"TextString"];
-    self.EditingType=[self.ShowTextMappingKey objectForKey:CellItemText];
-    self.EditingIndexPath=indexPath;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateEditingInfo:) name:@"UpdateInfo" object:nil];
- 
-    [self.navigationController pushViewController:NextVC animated:YES];
+    
      
 }
 

@@ -147,4 +147,16 @@ NSString* str=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding 
     return array;
 }
 
+-(NSDictionary*)dictionaryOfJSON{
+    
+    NSString* resultStr=[self submit];
+    if ([resultStr isEqualToString:@"failed"]) {
+        return [[NSDictionary alloc] init];
+    }
+    NSDictionary* dict=[NSJSONSerialization JSONObjectWithData:self.result options:NSJSONReadingMutableLeaves error:nil];
+    
+    return dict;
+    
+}
+
 @end
