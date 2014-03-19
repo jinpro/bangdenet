@@ -39,31 +39,7 @@
     [req add:[[NSUserDefaults standardUserDefaults] objectForKey:@"u_name"] forkey:@"user"];
     
     MessagesArray=[req getList];
-    dispatch_queue_t new_message_t=dispatch_queue_create("newmessage", NULL);
-    dispatch_async(new_message_t, ^{
-        while (1) {
-            [req setFile:@"/board/get_my_board.php"];
-            [req add:[[NSUserDefaults standardUserDefaults] objectForKey:@"u_name"] forkey:@"user"];
-            NSArray* NewArray=[req getList];
-            
-            if ([NewArray count]!=[MessagesArray count]) {
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    MessagesArray=NewArray;
-                    if (MessageIndexPath!=nil) {
-                        [self.tableview reloadRowsAtIndexPaths:@[MessageIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                    }
-                    
-                });
-                
-            }
-            sleep(5);
-
-        }
-        
-    });
-     
+    
 }
 
 

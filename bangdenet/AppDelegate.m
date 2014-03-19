@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "Request.h"
-#import "ListenToNewMessageOperation.h"
 #import "FilePath.h"
 @implementation AppDelegate{
     
