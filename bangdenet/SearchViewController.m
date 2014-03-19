@@ -10,6 +10,7 @@
 #import "Request.h"
 #import "FilePath.h"
 #import "QuestionCell.h"
+#import "UIElements.h"
 @interface SearchViewController ()
 @property (copy,nonatomic) NSString* FlagString;
 @end
@@ -20,20 +21,11 @@
     int CurrentRow;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        
-        
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithCGColor:[UIElements TintColor]]];
     strLocation=nil;
     TheManager=[[CLLocationManager alloc] init];
     TheManager.delegate=self;

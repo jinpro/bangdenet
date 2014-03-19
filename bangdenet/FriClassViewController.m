@@ -7,7 +7,7 @@
 //
 
 #import "FriClassViewController.h"
-
+#import "UIElements.h"
 @interface FriClassViewController ()
 
 @end
@@ -17,7 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+	[self.navigationController.navigationBar setTintColor:[UIColor colorWithCGColor:[UIElements TintColor]]];
 }
 
 - (void)didReceiveMemoryWarning

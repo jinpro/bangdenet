@@ -24,6 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithCGColor:[UIElements TintColor]]];
     self.tableview.tintColor=[UIColor colorWithCGColor:[UIElements TintColor]];
     static int AccessCount=0;
     AccessCount++;

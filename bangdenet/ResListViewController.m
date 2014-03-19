@@ -36,7 +36,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  
     [self downLoadData];
     
 }
@@ -87,7 +86,6 @@
     else{
         return @"回答";
     }
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -110,7 +108,7 @@
         NSDictionary* dict=[ResArray objectAtIndex:indexPath.row];
         cell.AnwserContentLabel.text=[dict objectForKey:@"h_text"];
         cell.PublisherLabel.text=[dict objectForKey:@"u_name"];
-        cell.TimeLabel.text=[dict objectForKey:@"time"];
+        cell.TimeLabel.text=[dict objectForKey:@"h_time"];
         
         return cell;
 
@@ -147,8 +145,6 @@
         return ;
     }
     [self performSegueWithIdentifier:@"ModalDetailsView" sender:self];
-    
-    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "NotificatingUserMethods.h"
 #import "UserProfileViewController.h"
+#import "UIElements.h"
 @interface AboutViewController ()
 
 @end
@@ -24,20 +25,12 @@
     NSIndexPath* MessageIndexPath;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    
-    return self;
-    
-}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithCGColor:[UIElements TintColor]]];
     MessageIndexPath=nil;
     
     Request* req=[[Request alloc] init];

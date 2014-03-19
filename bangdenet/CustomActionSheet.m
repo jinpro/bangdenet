@@ -10,14 +10,7 @@
 #import "UIElements.h"
 @implementation CustomActionSheet
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
+
 
 -(void)showFromTabBar:(UITabBar *)view{
     

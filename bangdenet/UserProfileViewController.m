@@ -157,9 +157,6 @@
         Cell.detailTextLabel.text=[self.ProfilesDictionary objectForKey:[self.ShowTextMappingKey objectForKey:Cell.textLabel.text]];
         NSLog(@"%@:%@",[self.ShowTextMappingKey objectForKey:Cell.textLabel.text],Cell.detailTextLabel.text);
     }
-    
-    
-    
     return Cell;
 }
 

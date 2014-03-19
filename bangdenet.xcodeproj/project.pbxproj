@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181C51F618D94020009E50FB /* MessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 181C51F518D94020009E50FB /* MessageData.m */; };
 		18211C2018CF2C9D0097696A /* CWStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 18211C1F18CF2C9D0097696A /* CWStatusBarNotification.m */; };
 		18211C2318CF2D210097696A /* NotificatingUserMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 18211C2218CF2D210097696A /* NotificatingUserMethods.m */; };
 		18211C2918CF425F0097696A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18211C2818CF425F0097696A /* CFNetwork.framework */; };
@@ -45,7 +46,6 @@
 		1875979616EEB08A006F4C64 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1875979516EEB08A006F4C64 /* AboutViewController.m */; };
 		1875979D16EEBF42006F4C64 /* CheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1875979C16EEBF42006F4C64 /* CheckViewController.m */; };
 		18810D75174FABB90091133B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 18810D74174FABB90091133B /* MBProgressHUD.m */; };
-		1887F01818CCA01B0085ECE2 /* ListenToNewMessageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1887F01718CCA01B0085ECE2 /* ListenToNewMessageOperation.m */; };
 		18AC450F18D2F97400E7210E /* DateEditTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AC450E18D2F97400E7210E /* DateEditTextViewController.m */; };
 		18AC451118D2FB6B00E7210E /* doneToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18AC451018D2FB6B00E7210E /* doneToolBar.xib */; };
 		18C51F9316E96A9700D0303E /* FilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C51F9216E96A9700D0303E /* FilePath.m */; };
@@ -77,6 +77,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		181C51F218D93ECF009E50FB /* Observer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Observer.h; sourceTree = "<group>"; };
+		181C51F318D93F61009E50FB /* Subject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Subject.h; sourceTree = "<group>"; };
+		181C51F418D94020009E50FB /* MessageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageData.h; sourceTree = "<group>"; };
+		181C51F518D94020009E50FB /* MessageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageData.m; sourceTree = "<group>"; };
 		18211C1E18CF2C9D0097696A /* CWStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWStatusBarNotification.h; sourceTree = "<group>"; };
 		18211C1F18CF2C9D0097696A /* CWStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWStatusBarNotification.m; sourceTree = "<group>"; };
 		18211C2118CF2D210097696A /* NotificatingUserMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificatingUserMethods.h; sourceTree = "<group>"; };
@@ -144,8 +148,6 @@
 		1875979C16EEBF42006F4C64 /* CheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckViewController.m; sourceTree = "<group>"; };
 		18810D73174FAB4B0091133B /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		18810D74174FABB90091133B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		1887F01618CCA01B0085ECE2 /* ListenToNewMessageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListenToNewMessageOperation.h; sourceTree = "<group>"; };
-		1887F01718CCA01B0085ECE2 /* ListenToNewMessageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListenToNewMessageOperation.m; sourceTree = "<group>"; };
 		18AC450D18D2F97400E7210E /* DateEditTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateEditTextViewController.h; sourceTree = "<group>"; };
 		18AC450E18D2F97400E7210E /* DateEditTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateEditTextViewController.m; sourceTree = "<group>"; };
 		18AC451018D2FB6B00E7210E /* doneToolBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = doneToolBar.xib; sourceTree = "<group>"; };
@@ -313,8 +315,6 @@
 				1831435818D156F700DAAED1 /* JobStatusViewController.m */,
 				183143B118D1B3F100DAAED1 /* CustomActionSheet.h */,
 				183143B218D1B3F100DAAED1 /* CustomActionSheet.m */,
-				1887F01618CCA01B0085ECE2 /* ListenToNewMessageOperation.h */,
-				1887F01718CCA01B0085ECE2 /* ListenToNewMessageOperation.m */,
 				18211C2118CF2D210097696A /* NotificatingUserMethods.h */,
 				18211C2218CF2D210097696A /* NotificatingUserMethods.m */,
 				18C51F9116E96A9700D0303E /* FilePath.h */,
@@ -328,6 +328,10 @@
 				1831435A18D1587500DAAED1 /* ConfigInfo.h */,
 				1831435B18D1587500DAAED1 /* ConfigInfo.m */,
 				1831434218D1451900DAAED1 /* DataModel.h */,
+				181C51F218D93ECF009E50FB /* Observer.h */,
+				181C51F318D93F61009E50FB /* Subject.h */,
+				181C51F418D94020009E50FB /* MessageData.h */,
+				181C51F518D94020009E50FB /* MessageData.m */,
 				1831434C18D14FDE00DAAED1 /* BasicCell.h */,
 				1831434D18D14FDE00DAAED1 /* BasicCell.m */,
 				1831435D18D1615E00DAAED1 /* UIElements.h */,
@@ -498,7 +502,7 @@
 				1831435F18D1615E00DAAED1 /* UIElements.m in Sources */,
 				1822B54F1892CDA000A1FF48 /* AboutDevelopersViewController.m in Sources */,
 				18810D75174FABB90091133B /* MBProgressHUD.m in Sources */,
-				1887F01818CCA01B0085ECE2 /* ListenToNewMessageOperation.m in Sources */,
+				181C51F618D94020009E50FB /* MessageData.m in Sources */,
 				18D496FA18D0634A00B7B5FA /* EditTextViewController.m in Sources */,
 				18211C2318CF2D210097696A /* NotificatingUserMethods.m in Sources */,
 				18D5EB7318B7CE1100671447 /* MLPAccessoryBadge.m in Sources */,
