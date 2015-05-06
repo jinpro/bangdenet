@@ -22,7 +22,6 @@
 		182F530218B8C47C00EAB395 /* AnwserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182F530118B8C47C00EAB395 /* AnwserCell.m */; };
 		1831433E18D141CB00DAAED1 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831433D18D141CB00DAAED1 /* UserInfo.m */; };
 		1831434118D144F000DAAED1 /* MyUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831434018D144F000DAAED1 /* MyUserInfo.m */; };
-		1831434718D1488C00DAAED1 /* SelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831434618D1488C00DAAED1 /* SelectTableViewController.m */; };
 		1831434918D14D4000DAAED1 /* SelectTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1831434818D14D4000DAAED1 /* SelectTable.xib */; };
 		1831434B18D14F9400DAAED1 /* BasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1831434A18D14F9400DAAED1 /* BasicCell.xib */; };
 		1831434E18D14FDE00DAAED1 /* BasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831434D18D14FDE00DAAED1 /* BasicCell.m */; };
@@ -74,6 +73,7 @@
 		18D5EB7318B7CE1100671447 /* MLPAccessoryBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D5EB6F18B7CE1100671447 /* MLPAccessoryBadge.m */; };
 		18D5EB7418B7CE1100671447 /* UIColor+MLPFlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D5EB7118B7CE1100671447 /* UIColor+MLPFlatColors.m */; };
 		18D5EB7518B7CE1100671447 /* DEMOViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D5EB7218B7CE1100671447 /* DEMOViewController.xib */; };
+		71E68D3F1AFAD18000A983A4 /* SelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E68D3E1AFAD18000A983A4 /* SelectTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,7 +107,6 @@
 		1831434018D144F000DAAED1 /* MyUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUserInfo.m; sourceTree = "<group>"; };
 		1831434218D1451900DAAED1 /* DataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
 		1831434518D1488C00DAAED1 /* SelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTableViewController.h; sourceTree = "<group>"; };
-		1831434618D1488C00DAAED1 /* SelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectTableViewController.m; path = "/Users/apple/Documents/iOS开发/bangdenet/git@github.com:jinpro/bangde.git/../../bangdenet/SelectTableViewController.m"; sourceTree = "<absolute>"; };
 		1831434818D14D4000DAAED1 /* SelectTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectTable.xib; sourceTree = "<group>"; };
 		1831434A18D14F9400DAAED1 /* BasicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicCell.xib; sourceTree = "<group>"; };
 		1831434C18D14FDE00DAAED1 /* BasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicCell.h; sourceTree = "<group>"; };
@@ -196,6 +195,7 @@
 		18D5EB7018B7CE1100671447 /* UIColor+MLPFlatColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MLPFlatColors.h"; sourceTree = "<group>"; };
 		18D5EB7118B7CE1100671447 /* UIColor+MLPFlatColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MLPFlatColors.m"; sourceTree = "<group>"; };
 		18D5EB7218B7CE1100671447 /* DEMOViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DEMOViewController.xib; sourceTree = "<group>"; };
+		71E68D3E1AFAD18000A983A4 /* SelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,7 +306,7 @@
 				18AC450D18D2F97400E7210E /* DateEditTextViewController.h */,
 				18AC450E18D2F97400E7210E /* DateEditTextViewController.m */,
 				1831434518D1488C00DAAED1 /* SelectTableViewController.h */,
-				1831434618D1488C00DAAED1 /* SelectTableViewController.m */,
+				71E68D3E1AFAD18000A983A4 /* SelectTableViewController.m */,
 				1831434F18D1515B00DAAED1 /* GenderSelectViewController.h */,
 				1831435018D1515B00DAAED1 /* GenderSelectViewController.m */,
 				1831435418D156D500DAAED1 /* PreferenceViewController.h */,
@@ -472,10 +472,10 @@
 				183143B318D1B3F100DAAED1 /* CustomActionSheet.m in Sources */,
 				18D3474216E4257B006D9501 /* ViewController.m in Sources */,
 				18D496F318D04A9100B7B5FA /* UserProfileViewController.m in Sources */,
+				71E68D3F1AFAD18000A983A4 /* SelectTableViewController.m in Sources */,
 				18D5EB7418B7CE1100671447 /* UIColor+MLPFlatColors.m in Sources */,
 				18669B83188FF184007C78B8 /* FriClassViewController.m in Sources */,
 				1831435918D156F700DAAED1 /* JobStatusViewController.m in Sources */,
-				1831434718D1488C00DAAED1 /* SelectTableViewController.m in Sources */,
 				1831435C18D1587500DAAED1 /* ConfigInfo.m in Sources */,
 				182F530218B8C47C00EAB395 /* AnwserCell.m in Sources */,
 				18AC450F18D2F97400E7210E /* DateEditTextViewController.m in Sources */,

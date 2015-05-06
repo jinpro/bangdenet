@@ -26,16 +26,9 @@
     [super viewDidLoad];
     [self.navigationController.navigationBar setTintColor:[UIColor colorWithCGColor:[UIElements TintColor]]];
     self.tableview.tintColor=[UIColor colorWithCGColor:[UIElements TintColor]];
-    static int AccessCount=0;
-    AccessCount++;
-    if (AccessCount==1) {
         NSLog(@"第一次访问\n");
         [self DownLoadData];
         [self listenToNewAnswer];
-    }else{
-        NSLog(@"第n次访问\n");
-        [self DownLoadData];
-    }
     [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(AddQuestion:) name:@"AddQuestion" object:nil];
     
 }
@@ -54,8 +47,9 @@
         [req setFile:@"/task/get_my_task.php"];
         
         [req add:[[NSUserDefaults standardUserDefaults] objectForKey:@"u_name"] forkey:@"user"];
+        self.QuestionsArray=[req getList];
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.QuestionsArray=[req getList];
+            
             [self.tableview reloadData];
             
         });
@@ -75,7 +69,6 @@
             [req add:[[NSUserDefaults standardUserDefaults] objectForKey:@"u_name"] forkey:@"user"];
             NSArray* NewArray=[req getList];
             if ([NewArray count]==0) {
-                [NotificatingUserMethods showMessageInAlertView:@"网络已经断开，无法获得网络数据"];
                 break;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
